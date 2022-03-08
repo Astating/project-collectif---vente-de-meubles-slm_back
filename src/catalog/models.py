@@ -52,9 +52,9 @@ class Furnitures (models.Model):
     )
 
 
-price = models.FloatField
-dimension = models.CharField
-stock = models.BooleanField
+    price = models.FloatField
+    dimension = models.CharField
+    stock = models.BooleanField
 
 
 """class Outil (models.Model):
