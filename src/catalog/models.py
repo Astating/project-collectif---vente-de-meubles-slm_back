@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Furnitures (models.Model):
+    price = models.FloatField
+    dimension = models.CharField
+    stock = models.BooleanField
+
     class Type(models.TextChoices):
         BED = 'Bed', ('Bed')
         CHAIR = 'Chair', ('Chair')
@@ -50,11 +54,6 @@ class Furnitures (models.Model):
         choices=Material.choices,
         default=Material.WOOD
     )
-
-
-price = models.FloatField
-dimension = models.CharField
-stock = models.BooleanField
 
 
 """class Outil (models.Model):
