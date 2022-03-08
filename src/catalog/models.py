@@ -53,7 +53,12 @@ class Furnitures (models.Model):
         choices=MATERIAL_CHOICES,
     )
     dimension = models.CharField
-
     stock = models.BooleanField
 
+class Outil (models.Model):
+    title = models.CharField(max_length=100)
+    objects = Furnitures()
+    
+outil = Outil.objects("Notre fourniture")
+    
 
