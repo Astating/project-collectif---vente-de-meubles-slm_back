@@ -2,8 +2,11 @@ from django.db import models
 
 
 class Furnitures (models.Model):  # Classe mère
+    #champ qui permet a l'utilisateur de remplir en prix
     price = models.FloatField(default=0.0)
+    #Champ qui permet a l'utilisateur de remplir une dimension
     dimension = models.CharField(max_length=255, default='100x200x200')
+    #Case a coché en stock ou non 
     stock = models.BooleanField(default=True)
 
     class Type(models.TextChoices):  # Sous classe
