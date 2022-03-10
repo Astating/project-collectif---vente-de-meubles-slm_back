@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from catalog import views
+from user import uviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', views.furnitures, name = 'catalog'),
+    path('user/', uviews.clients, name = 'client'),
 ]
