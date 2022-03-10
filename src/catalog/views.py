@@ -1,3 +1,4 @@
+from django import urls
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Furnitures #Importer la classe Furnitures
@@ -9,6 +10,10 @@ def furnitures(request):
     furnitures = []
     for furniture in data:
         params = {
+            'id':int(furniture.id),
+            'title' : str(furniture.title),
+            'description' :str(furniture.description),
+            # 'image' :furniture.img,
             'price':str(furniture.price), #Transformation de chaque enregistement de type data (données) en type String(chaine de caractères)
             'dimension':str(furniture.dimension),
             'stock':bool(furniture.stock),
