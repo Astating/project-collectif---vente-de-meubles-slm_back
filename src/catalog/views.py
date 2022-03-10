@@ -13,7 +13,7 @@ def furnitures(request):
             'id':int(furniture.id),
             'title' : str(furniture.title),
             'description' :str(furniture.description),
-            # 'image' :furniture.img,
+            'image' :str(furniture.img),
             'price':str(furniture.price), #Transformation de chaque enregistement de type data (données) en type String(chaine de caractères)
             'dimension':str(furniture.dimension),
             'stock':bool(furniture.stock),

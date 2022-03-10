@@ -14,7 +14,7 @@ class Furnitures (models.Model):  # Classe mère
     description = models.TextField(default='Add a description of your item here.')
     #Block de titre
     title = models.CharField(max_length=255,default='Add a title here.')
-    img = models.ImageField(default='upload images')
+    img = models.ImageField(upload_to= 'images', default='upload images')
 
     class Type(models.TextChoices):  # Sous classe
         # Tableau de valeur
