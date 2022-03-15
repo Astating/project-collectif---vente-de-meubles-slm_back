@@ -3,7 +3,19 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Clients #Importer la classe Clients
 import json
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def clients(request):
+    if request.method == "POST":
+        """ pseudo = request.POST['name']
+        password = request.POST['password']
+        email = request.POST['email']
+        ... """
+
+        Clients.objects.create(pseudo="Bernard", zipcode=75012)
+        return HttpResponse(request.POST['name'])
+
     data = Clients.objects.all() #Récupère tous les enregistrements du tableau
     clients = []
     for client in data:

@@ -22,4 +22,3 @@ class Clients (models.Model):
 
 
 
-
