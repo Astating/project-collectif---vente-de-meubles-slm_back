@@ -22,7 +22,7 @@ def furnitures(request):
         # Furnitures.objects.create(title=title, description=description, price=price, dimension=dimension,
         #                           type=typeObject, color=color, condition=condition, material=material)
 
-        Furnitures.object.create(
+        Furnitures.objects.create(
             title=title, description=description, dimension=dimension)
 
     data = Furnitures.objects.all()  # Récupère tous les enregistrements du tableau
