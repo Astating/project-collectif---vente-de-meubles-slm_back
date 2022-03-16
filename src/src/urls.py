@@ -22,10 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalog/', views.furnitures, name = 'catalog'),
-    path('user/', uviews.clients, name = 'client'),
-    #path('images/', ../images),
+    path('catalog/', views.furnitures, name='catalog'),
+    path('user/', uviews.clients, name='client'),
 ]
-
+# the lines below are used to make images appear when called via the API
 urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+                      document_root=settings.MEDIA_ROOT)
