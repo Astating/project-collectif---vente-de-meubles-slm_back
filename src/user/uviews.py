@@ -14,7 +14,7 @@ def clients(request):
         ... """
 
         Clients.objects.create(pseudo="Bernard", zipcode=75012)
-        return HttpResponse(request.POST['name'])
+        return HttpResponse(request.method)
 
     data = Clients.objects.all() #Récupère tous les enregistrements du tableau
     clients = []

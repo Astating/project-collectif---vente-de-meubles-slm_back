@@ -17,9 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from catalog import views
 from user import uviews
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', views.furnitures, name = 'catalog'),
     path('user/', uviews.clients, name = 'client'),
+    #path('images/', ../images),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
