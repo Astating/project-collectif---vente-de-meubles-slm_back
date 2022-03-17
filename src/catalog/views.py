@@ -5,6 +5,7 @@ from .models import Furnitures  # Importer la classe Furnitures
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def furniture(request,id):
     if request.method == "DELETE":
         Furnitures.objects.filter(id=id).delete()
