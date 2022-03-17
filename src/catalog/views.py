@@ -2,24 +2,40 @@ from django import urls
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Furnitures  # Importer la classe Furnitures
+from rest_framework.parsers import JSONParser 
+from rest_framework import status
+from catalog.serializers import FurnituresSerializer
 import json
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 
 @csrf_exempt
+@api_view(['PUT', 'DELETE'])
 def furniture(request, id):
+    furniture = Furnitures.objects.get(id=id)
+    """ try: 
+        furniture = Furnitures.objects.get(id=id) 
+    except Furnitures.DoesNotExist: 
+        return JsonResponse({'message': 'The furnitures do not exist'}, status=status.HTTP_404_NOT_FOUND) """
+
     if request.method == "DELETE":
         Furnitures.objects.filter(id=id).delete()
         return JsonResponse({'message': 'delete with success!'})
 
     elif request.method == "PUT":
-        Furnitures.objects.filter(id=id).put()  
+        furniture_data = JSONParser().parse(request) 
+        furniture_serializer = FurnituresSerializer(furniture, data=furniture_data) 
+        if furniture_serializer.is_valid(): 
+            furniture_serializer.save() 
+            return JsonResponse(furniture_serializer.data) 
+        return JsonResponse(furniture_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
 @csrf_exempt
 def furnitures(request):
     if request.method == "POST":
         title = request.POST["title"]
         description = request.POST["description"]
-        #image = request.POST["image"]
+        image = request.POST["image"]
         price = request.POST["price"]
         dimension = request.POST["dimension"]
         typeObject = request.POST["type"]
@@ -27,11 +43,9 @@ def furnitures(request):
         condition = request.POST["condition"]
         material = request.POST["material"]
 
-        # Furnitures.objects.create(title=title, description=description, price=price, dimension=dimension,
-        #                           type=typeObject, color=color, condition=condition, material=material)
+        Furnitures.objects.create(title=title, description=description, price=price, dimension=dimension, type=typeObject, color=color, condition=condition, material=material, img=image)
 
-        Furnitures.objects.create(
-            title=title, description=description, dimension=dimension)  
+        
 
     data = Furnitures.objects.all()  # Récupère tous les enregistrements du tableau
 
