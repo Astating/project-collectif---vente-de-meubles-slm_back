@@ -6,10 +6,10 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
-def furniture(request,id):
+def furniture(request, id):
     if request.method == "DELETE":
         Furnitures.objects.filter(id=id).delete()
-        return JsonResponse ({'message': 'delete with success!'})
+        return JsonResponse({'message': 'delete with success!'})
 
     elif request.method == "PUT":
         Furnitures.objects.filter(id=id).put()  

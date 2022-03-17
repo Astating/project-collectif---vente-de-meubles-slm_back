@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', views.furnitures, name='catalog'),
     path('user/', uviews.clients, name='client'),
-    path('catalog/<int:id>', views.furnitures, name='catalog'),
+    path('catalog/<int:id>/', views.furniture, name='catalog'),
 ]
 # the lines below are used to make images appear when called via the API
 urlpatterns += static(settings.MEDIA_URL,
