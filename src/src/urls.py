@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path
 from catalog import views
@@ -24,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', views.furnitures, name='catalog'),
     path('user/', uviews.clients, name='client'),
+    path('catalog/<int:id>', views.furnitures, name='catalog'),
 ]
 # the lines below are used to make images appear when called via the API
 urlpatterns += static(settings.MEDIA_URL,

@@ -1,10 +1,17 @@
 from django import urls
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Furnitures  # Importer la classe Furnitures
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+def furniture(request,id):
+    if request.method == "DELETE":
+        Furnitures.objects.filter(id=id).delete()
+        return JsonResponse ({'message': 'delete with success!'})
+
+    elif request.method == "PUT":
+        Furnitures.objects.filter(id=id).put()  
 
 @csrf_exempt
 def furnitures(request):
@@ -23,9 +30,10 @@ def furnitures(request):
         #                           type=typeObject, color=color, condition=condition, material=material)
 
         Furnitures.objects.create(
-            title=title, description=description, dimension=dimension)
+            title=title, description=description, dimension=dimension)  
 
     data = Furnitures.objects.all()  # Récupère tous les enregistrements du tableau
+
 
     furnitures = []
     for furniture in data:
